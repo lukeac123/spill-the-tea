@@ -1,0 +1,29 @@
+.appHeader {
+  display: sticky;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+
+  border-bottom: solid var(--mantine-color-text);
+  border-width: 1px;
+  z-index: 999;
+  background-color: var(--mantine-color-body);
+}
+
+.appHeader-drawer {
+  z-index: 9999;
+}
+
+.appHeader-title {
+  flex-grow: 2;
+  align-items: left;
+}
+
+.appHeader-link:hover {
+  text-decoration: underline;
+}
+
+.appHeader-burger {
+  flex-grow: 2;
+}
