@@ -1,13 +1,26 @@
 'use client';
 
+import { Input } from '../Input';
+
 import './Form.css';
 
 import { ChangeEvent, useState } from 'react';
 
+interface FormErrorsType {
+  firstName?: string;
+  lastName?: string;
+  number?: string;
+  email?: string;
+  gender?: string;
+  genderOther?: string;
+  location?: string;
+  availability?: string;
+}
+
 export const Form = () => {
   //Change this to an object of Objects so it can be mapped over
 
-  const [formState, setFormState] = useState({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     number: '',
@@ -17,49 +30,67 @@ export const Form = () => {
     location: '',
     availability: '',
   });
+  const [formErrors, setFormErrors] = useState<FormErrorsType>({});
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const fieldName = event.target.name;
-    setFormState((prev) => {
+    const { value, name } = event.target;
+    setFormData((prev) => {
       return {
         ...prev,
-        [fieldName]: value,
+        [name]: value,
       };
     });
   };
 
+  const validate = () => {
+    const errs: FormErrorsType = {};
+
+    if (!formData.firstName) {
+      errs.firstName = 'Name is required';
+    }
+
+    if (!formData.email) {
+      errs.email = 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errs.email = 'Enter a valid email address.';
+    }
+
+    return errs;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const errors = validate();
+    setFormErrors(errors);
 
-    // const response = await fetch('../api/submit', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formState),
-    // });
+    const response = await fetch('../api/formSubmit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-    // const result = await response.json();
-    // alert(result.message);
+    const result = await response.json();
+    alert(result.message);
   };
 
   return (
     <form className="form" onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="firstName">First Name</label>
-      <input
+      <Input
         id="firstName"
         name="firstName"
-        value={formState.firstName}
-        onChange={handleChange}
+        value={formData.firstName}
+        label="First Name"
+        onChange={(event) => handleChange(event)}
         autoComplete="given-name"
         required
         aria-required
+        errors={formErrors.firstName}
       />
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        name="lastName"
+      <Input
         id="lastName"
-        value={formState.lastName}
-        onChange={handleChange}
+        label="Last Name"
+        value={formData.lastName}
+        onChange={(event) => handleChange(event)}
         autoComplete="family-name"
         required
         aria-required
@@ -73,7 +104,7 @@ export const Form = () => {
             type="radio"
             value="male"
             name="gender"
-            checked={formState.gender === 'male'}
+            checked={formData.gender === 'male'}
             onChange={handleChange}
             required
           />
@@ -83,7 +114,7 @@ export const Form = () => {
             type="radio"
             value="female"
             name="gender"
-            checked={formState.gender === 'female'}
+            checked={formData.gender === 'female'}
             onChange={handleChange}
           />
 
@@ -93,14 +124,14 @@ export const Form = () => {
             type="radio"
             value="other"
             name="gender"
-            checked={formState.gender === 'other'}
+            checked={formData.gender === 'other'}
             onChange={handleChange}
           />
         </>
-        {formState.gender === 'other' && (
+        {formData.gender === 'other' && (
           <>
             <label>Please Specify</label>
-            <input name={'genderOther'} value={formState.genderOther} onChange={handleChange} />
+            <input name={'genderOther'} value={formData.genderOther} onChange={handleChange} />
           </>
         )}
       </fieldset>
