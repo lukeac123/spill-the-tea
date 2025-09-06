@@ -9,7 +9,6 @@ import { ChangeEvent, useState } from 'react';
 interface FormErrorsType {
   firstName?: string;
   lastName?: string;
-  number?: string;
   email?: string;
   gender?: string;
   genderOther?: string;
@@ -17,13 +16,22 @@ interface FormErrorsType {
   availability?: string;
 }
 
+interface FormType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  genderOther: string;
+  location: string;
+  availability: string;
+}
+
 export const Form = () => {
   //Change this to an object of Objects so it can be mapped over
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormType>({
     firstName: '',
     lastName: '',
-    number: '',
     email: '',
     gender: '',
     genderOther: '',
@@ -63,7 +71,7 @@ export const Form = () => {
     const errors = validate();
     setFormErrors(errors);
 
-    const response = await fetch('../api/formSubmit', {
+    const response = await fetch('/api/form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -88,6 +96,7 @@ export const Form = () => {
       />
       <Input
         id="lastName"
+        name="lastName"
         label="Last Name"
         value={formData.lastName}
         onChange={(event) => handleChange(event)}
