@@ -1,7 +1,5 @@
 'use client';
 
-import { Input } from '../Input';
-
 import './Form.css';
 
 import { ChangeEvent, useState } from 'react';
@@ -16,31 +14,27 @@ interface FormErrorsType {
   availability?: string;
 }
 
-interface FormType {
+interface UserType {
   firstName: string;
   lastName: string;
   email: string;
   gender: string;
-  genderOther: string;
   location: string;
-  availability: string;
 }
 
 export const Form = () => {
-  //Change this to an object of Objects so it can be mapped over
-
-  const [formData, setFormData] = useState<FormType>({
+  const [formData, setFormData] = useState<UserType>({
     firstName: '',
     lastName: '',
     email: '',
     gender: '',
-    genderOther: '',
     location: '',
-    availability: '',
   });
   const [formErrors, setFormErrors] = useState<FormErrorsType>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  const [formComplete, setFormComplete] = useState<string>('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     const { value, name } = event.target;
     setFormData((prev) => {
       return {
@@ -68,45 +62,74 @@ export const Form = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const errors = validate();
     setFormErrors(errors);
 
-    const response = await fetch('/api/form', {
+    const response = await fetch('/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
 
-    const result = await response.json();
-    alert(result.message);
+    const data = await response.json();
+
+    if (data.userExists) {
+      setFormComplete('Error : User Already Exists');
+      setLoading(false);
+    } else {
+      setLoading(false);
+      setFormComplete('Thankyou for signing up, confirmation will be with you shortly');
+    }
   };
 
   return (
-    <form className="form" onSubmit={(e) => handleSubmit(e)}>
-      <Input
-        id="firstName"
-        name="firstName"
-        value={formData.firstName}
-        label="First Name"
-        onChange={(event) => handleChange(event)}
-        autoComplete="given-name"
-        required
-        aria-required
-        errors={formErrors.firstName}
-      />
-      <Input
-        id="lastName"
-        name="lastName"
-        label="Last Name"
-        value={formData.lastName}
-        onChange={(event) => handleChange(event)}
-        autoComplete="family-name"
-        required
-        aria-required
-      />
-      <fieldset className="gender">
-        <legend>Select your gender</legend>
+    <>
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            id="firstName"
+            name="firstName"
+            placeholder="John"
+            value={formData.firstName}
+            onChange={(event) => handleChange(event)}
+            autoComplete="given-name"
+            required
+            aria-required
+          />
+          {formErrors.firstName}
+        </>
+        <>
+          <label htmlFor="lastName">First Name</label>
+          <input
+            id="lastName"
+            name="lastName"
+            placeholder="Doe"
+            value={formData.lastName}
+            onChange={(event) => handleChange(event)}
+            autoComplete="family-name"
+            required
+            aria-required
+          />
+          {formErrors.firstName}
+        </>
+        <>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            placeholder="johndoe@email.com"
+            value={formData.email}
+            onChange={(event) => handleChange(event)}
+            autoComplete="email"
+            required
+            aria-required
+          />
+          {formErrors.firstName}
+        </>
+        <fieldset className="gender">
+          <legend>Select your gender</legend>
           <label htmlFor="male">Male</label>
           <input
             id="male"
@@ -127,7 +150,7 @@ export const Form = () => {
             onChange={handleChange}
           />
 
-          <label htmlFor="other">Other</label>
+          <label htmlFor="other">Prefer Not to Say</label>
           <input
             id="other"
             type="radio"
@@ -136,25 +159,27 @@ export const Form = () => {
             checked={formData.gender === 'other'}
             onChange={handleChange}
           />
-        </>
-        {formData.gender === 'other' && (
-          <>
-            <label>Please Specify</label>
-            <input name={'genderOther'} value={formData.genderOther} onChange={handleChange} />
-          </>
-        )}
-      </fieldset>
+        </fieldset>
 
-      <label htmlFor="location">Location</label>
-      <select name="location" id="location" required aria-required>
-        <option>London</option>
-        <option>Paris</option>
-        <option>Tokyo</option>
-        <option>Rome</option>
-        <option>Madrid</option>
-      </select>
+        <label htmlFor="location">Location</label>
+        <select
+          name="location"
+          id="location"
+          required
+          aria-required
+          onChange={(event) => handleChange(event)}
+        >
+          <option>London</option>
+          <option>Paris</option>
+          <option>Tokyo</option>
+          <option>Rome</option>
+          <option>Madrid</option>
+        </select>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+      {loading && '...loading'}
+      {formComplete}
+    </>
   );
 };

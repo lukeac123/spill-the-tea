@@ -1,0 +1,16 @@
+.appHeader {
+  position: relative;
+  display: sticky;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.colorSchemeToggle {
+  position: absolute;
+  right: 10px;
+
+}
