@@ -1,7 +1,6 @@
 import { ChangeEvent, HTMLAttributes, Ref } from 'react';
 import { clsx } from 'clsx';
-
-import './input.css';
+import styles from './input.module.css';
 
 interface InputTypes extends HTMLAttributes<HTMLInputElement> {
   id: string;
@@ -12,8 +11,10 @@ interface InputTypes extends HTMLAttributes<HTMLInputElement> {
   ref?: Ref<HTMLInputElement>;
   errorLabel?: string;
   errors?: string;
-  required: boolean;
-  autoComplete: string;
+  required?: boolean;
+  autoComplete?: string;
+  placeholder?: string;
+  type?: string;
 }
 
 export const Input = ({
@@ -30,7 +31,7 @@ export const Input = ({
   };
 
   return (
-    <div className={clsx(className, 'input-container')}>
+    <div className={clsx(className, styles.inputContainer)}>
       <label htmlFor={label}>{label}</label>
       <input
         id={id}

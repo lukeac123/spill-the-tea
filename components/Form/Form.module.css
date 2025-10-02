@@ -1,0 +1,30 @@
+.formContainer {
+    position: relative;
+    width: 500px;
+    border: solid var(--mantine-color-text);
+    border-radius: var(--mantine-radius-default);
+    border-width: 1px;
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+}
+
+.switch{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+}
+
+
+
