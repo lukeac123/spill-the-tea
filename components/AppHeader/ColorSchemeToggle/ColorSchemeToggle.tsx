@@ -1,9 +1,9 @@
 import { IconMoon, IconSun } from '@tabler/icons-react';
+import clsx from 'clsx';
 import { Button, useComputedColorScheme, useMantineColorScheme } from '@mantine/core';
+import styles from './ColorSchemeToggle.module.css';
 
-import './ColorSchemeToggle.component.css';
-
-export const ColorSchemeToggle = () => {
+export const ColorSchemeToggle = ({ className }: { className: string }) => {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('dark', {
     getInitialValueInEffect: true,
@@ -11,7 +11,7 @@ export const ColorSchemeToggle = () => {
 
   return (
     <Button
-      className="modeToggle"
+      className={clsx(styles.modeToggle, className)}
       variant="default"
       onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
     >

@@ -1,0 +1,13 @@
+.container{
+    justify-self: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.img {
+    height: 400px
+
+}
+

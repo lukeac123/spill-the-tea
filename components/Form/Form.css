@@ -1,12 +1,5 @@
-.container{
-    justify-self: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-
 .form {
+    width: 500px;
     border: solid var(--mantine-color-text);
     border-radius: var(--mantine-radius-default);
     border-width: 1px;
@@ -19,5 +12,12 @@
 .formInputs {
     display: flex;
     gap: 10px
-
 }
+
+
+.gender {
+    display: flex;
+    flex-direction: column;
+}
+
+
