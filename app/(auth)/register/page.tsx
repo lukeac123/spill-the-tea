@@ -25,6 +25,7 @@ import Link from "next/link";
 import { passwordMatchValidationSchema } from "@/validation/passwordMatchSchema";
 import { registerUser } from "./actions";
 import { useState } from "react";
+import { SpillTheTeaSVG } from "@/components/Icons/SpillTheTea";
 
 const formSchema = z
   .object({
@@ -55,6 +56,13 @@ export default function Register() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.svg}>
+        <SpillTheTeaSVG
+          width="500px"
+          height="500px"
+          viewBox="0 0 300.000000 450.000000"
+        />
+      </div>
       <Card className={styles.card}>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>

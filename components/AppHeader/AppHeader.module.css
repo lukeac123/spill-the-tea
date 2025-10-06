@@ -1,4 +1,14 @@
 .container {
-    height: 60px;
     border-bottom: solid 1px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle {
+    position: absolute;
+    right: 10px
 }

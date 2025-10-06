@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-:root {
+:root[class="dark"] {
+  --background: #171717;
+  --foreground:#ffffff;
+}
+
+:root[class="light"] {
   --background: #ffffff;
   --foreground: #171717;
 }

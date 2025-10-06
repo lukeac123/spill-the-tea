@@ -1,0 +1,23 @@
+"use client";
+
+import * as React from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+
+import { Button } from "@/components/ui/button";
+
+export const ThemeToggle = ({ className }: { className: string }) => {
+  const { setTheme, theme } = useTheme();
+
+  return (
+    <Button
+      variant="outline"
+      aria-label="Toggle Theme"
+      className={className}
+      onClick={() => (theme === "light" ? setTheme("dark") : setTheme("light"))}
+    >
+      <Sun aria-hidden />
+      <Moon aria-hidden />
+    </Button>
+  );
+};
