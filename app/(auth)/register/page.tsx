@@ -34,8 +34,6 @@ const formSchema = z
   .and(passwordMatchValidationSchema); // Custom Validation
 
 export default function Register() {
-  const [errorMessage, setErrorMessage] = useState("");
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,7 +49,10 @@ export default function Register() {
       password: data.password,
       passwordConfirm: data.passwordConfirm,
     });
-    if (response) setErrorMessage(response.message);
+    // If no errors set in here, then isSubmitSuccessful is true
+    if (!response?.ok) {
+      form.setError("email", { message: response?.message }); // attach error to email field
+    }
   };
 
   return (
@@ -63,6 +64,7 @@ export default function Register() {
           viewBox="0 0 300.000000 450.000000"
         />
       </div>
+
       <Card className={styles.card}>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -144,7 +146,6 @@ export default function Register() {
               <Button type="submit" variant="outline">
                 Register
               </Button>
-              {errorMessage}
             </form>
           </Form>
         </CardContent>

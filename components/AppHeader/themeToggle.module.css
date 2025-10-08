@@ -1,0 +1,7 @@
+.moon{
+    display: var(--dark-mode-hide) ;
+}
+
+.sun{
+    display: var(--light-mode-hide) ;
+}
