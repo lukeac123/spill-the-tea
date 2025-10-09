@@ -4,7 +4,7 @@ import { defineConfig } from "drizzle-kit";
 
 // Need this to get access to env file in next.js
 dotenv.config({
-  path: "env",
+  path: "env.local",
 });
 
 export default defineConfig({

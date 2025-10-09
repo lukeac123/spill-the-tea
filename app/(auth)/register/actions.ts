@@ -1,7 +1,6 @@
-"use server";
 import { passwordMatchValidationSchema } from "@/validation/passwordMatchSchema";
 import { z } from "zod";
-import { hash } from "bcrypt";
+import { hash } from "bcryptjs";
 import db from "@/db/drizzle";
 import { usersSchema } from "@/db/usersSchema";
 
@@ -39,14 +38,13 @@ export const registerUser = async ({
   } catch (error: any) {
     // error code for duplicate user - https://www.postgresql.org/docs/current/errcodes-appendix.html
     if (error.cause.code === "23505") {
-      console.log("yes");
       return {
-        ok: false,
+        error: true,
         message: "Email already exists",
       };
     } else {
       return {
-        ok: false,
+        error: true,
         message: "Error",
       };
     }

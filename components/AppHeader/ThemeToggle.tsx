@@ -7,7 +7,7 @@ import styles from "./themeToggle.module.css";
 
 import { Button } from "@/components/ui/button";
 
-export const ThemeToggle = ({ className }: { className: string }) => {
+export const ThemeToggle = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme();
 
   return (

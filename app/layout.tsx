@@ -4,6 +4,8 @@ import "./globals.css";
 import styles from "./layout.module.css";
 import { Appheader } from "../components/AppHeader/AppHeader";
 import { ThemeProvider } from "../components/providers";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,11 +22,14 @@ export const metadata: Metadata = {
   description: "Queer Community Platform",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  // if (session?.user) redirect("/events");
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -36,7 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Appheader />
+          <Appheader userId={session?.user?.email} />
           <main className={styles.layout}>{children}</main>
         </ThemeProvider>
       </body>
