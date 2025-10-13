@@ -7,7 +7,7 @@ export const LoginUser = async ({
   email,
   password,
 }: {
-  email: any;
+  email: string;
   password: string;
 }) => {
   const loginSchema = z.object({
@@ -18,10 +18,7 @@ export const LoginUser = async ({
   const loginValidation = loginSchema.safeParse({ email, password });
 
   if (!loginValidation.success)
-    return (
-      { error: true, message: loginValidation.error.issues[0]?.message } ??
-      "Error Occured With New User"
-    );
+    return { error: true, message: loginValidation.error.issues[0]?.message };
 
   const signin = await signIn("credentials", {
     email: email,

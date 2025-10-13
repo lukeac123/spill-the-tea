@@ -5,7 +5,6 @@ import styles from "./layout.module.css";
 import { Appheader } from "../components/AppHeader/AppHeader";
 import { ThemeProvider } from "../components/providers";
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +27,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
-  // if (session?.user) redirect("/events");
 
   return (
     <html lang="en" suppressHydrationWarning>

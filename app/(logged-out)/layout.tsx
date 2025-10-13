@@ -7,12 +7,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
-  if (!session) {
-    redirect("/events");
-  }
-  return (
-    <div>
-      <main>{children}</main>
-    </div>
-  );
+  if (session) redirect("/events-private");
+
+  return <main>{children}</main>;
 }
