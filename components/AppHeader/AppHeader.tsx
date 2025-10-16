@@ -3,6 +3,7 @@ import styles from "./AppHeader.module.css";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
+import { SpillTheTeaSVG } from "../Icons/SpillTheTea";
 
 export const Appheader = ({
   userId,
@@ -10,9 +11,15 @@ export const Appheader = ({
   userId: string | null | undefined;
 }) => {
   return (
-    <header className={styles.container}>
-      <h1 className={styles.title}>Spill The Tea</h1>
-      <div className={styles.action}>
+    <header className={styles.appheaderContainer}>
+      <Link href="/">
+        <SpillTheTeaSVG className={styles.appheaderSVG} viewBox="0 0 300 450" />
+      </Link>
+
+      <div className={styles.appheaderAction}>
+        <Button asChild variant="outline">
+          <Link href={"/events"}>Check out our upcoming events</Link>
+        </Button>
         {userId ? (
           <LogoutButton />
         ) : (

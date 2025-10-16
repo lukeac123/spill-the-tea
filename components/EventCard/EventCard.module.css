@@ -1,0 +1,13 @@
+.eventCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+} 
+
+.eventCardButton {
+    width: 100%
+}
+
+.eventCardImg {
+    width: 100%;
+}

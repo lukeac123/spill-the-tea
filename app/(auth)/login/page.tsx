@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import Link from "next/link";
 import { LoginUser } from "./actions";
-import { SpillTheTeaSVG } from "@/components/Icons/SpillTheTea";
+import { SpillTheTeaSVGText } from "@/components/Icons/SpillTheTeaText";
 import { passwordValidationSchema } from "@/validation/passwordSchema";
 import { useRouter } from "next/navigation";
 
@@ -59,11 +59,7 @@ export default function Login() {
   return (
     <div className={styles.page}>
       <div className={styles.svg}>
-        <SpillTheTeaSVG
-          width="500px"
-          height="500px"
-          viewBox="0 0 300.000000 450.000000"
-        />
+        <SpillTheTeaSVGText className={styles.svg} viewBox="0 0 300 450" />
       </div>
       <Card className={styles.card}>
         <CardHeader>

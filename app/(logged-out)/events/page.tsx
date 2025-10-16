@@ -1,37 +1,66 @@
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { EventCard } from "@/components/EventCard/EventCard";
+import styles from "./page.module.css";
 
 const events = [
   {
     id: 1,
-    title: "",
-    caption: "",
-    description: "",
-    date: "",
-    location: "",
-    maxAttendees: 1,
+    title: "Spanish Coffee Morning",
+    caption: "Join our Queer Spanish speaking community!",
+    date: "10/11/25",
+    location: "Bethnal Green Tavern",
+    imgSrc: "/spanish-coffee.jpeg",
+    imgDescription: "",
+    link: "",
+    maxAttendees: 10,
+  },
+  {
+    id: 2,
+    title: "Queer Book Club",
+    caption: "Join our Queer Spanish speaking community!",
+    date: "10/11/25",
+    location: "Bethnal Green Tavern",
+    imgSrc: "/queer-bookclub.jpeg",
+    imgDescription: "",
+    link: "",
+    attendees: [],
+    maxAttendees: 10,
+  },
+  {
+    id: 3,
+    title: "Spanish Coffee Morning",
+    caption: "Join our Queer Spanish speaking community!",
+    date: "10/11/25",
+    location: "Bethnal Green Tavern",
+    imgSrc: "/spanish-coffee.jpeg",
+    imgDescription: "",
+    link: "",
+    attendees: [],
+    maxAttendees: 10,
+  },
+  {
+    id: 4,
+    title: "Queer Book Club",
+    caption: "Join our Queer Spanish speaking community!",
+    date: "10/11/25",
+    location: "Bethnal Green Tavern",
+    imgSrc: "/queer-bookclub.jpeg",
+    imgDescription: "",
+    link: "",
+    attendees: [],
+    maxAttendees: 10,
   },
 ];
 
 export default function Page() {
   return (
-    <div>
-      {events.map((event) => {
-        return (
-          <Card key={event.id}>
-            <CardHeader>{event.title}</CardHeader>
-            <CardContent>{event.caption}</CardContent>
-            <CardFooter>
-              <Button>Sign Up To Event</Button>
-            </CardFooter>
-          </Card>
-        );
-      })}
+    <div className={styles.page}>
+      <div className={styles.eventsList}>
+        {events.map((event) => {
+          return (
+            <EventCard event={event} key={event.id} className={styles.card} />
+          );
+        })}
+      </div>
     </div>
   );
 }

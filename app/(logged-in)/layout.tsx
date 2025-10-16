@@ -10,9 +10,5 @@ export default async function RootLayout({
   if (!session) {
     redirect("/events");
   }
-  return (
-    <div>
-      <main>{children}</main>
-    </div>
-  );
+  return <>{children}</>;
 }

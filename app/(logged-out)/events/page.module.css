@@ -1,0 +1,24 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.eventsList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: inherit;
+    justify-content: inherit
+}
+
+.card{
+    width: 500px;
+}
+
+@media (width < 992px){
+.card{
+    width: 100%;
+}}
+
