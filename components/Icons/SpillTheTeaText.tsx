@@ -3,7 +3,7 @@ import styles from "./SpillTheTeaText.module.css";
 export const SpillTheTeaSVGText = ({ ...rest }) => {
   return (
     <div className={styles.icon}>
-      <svg preserveAspectRatio="xMidYMid meet" {...rest}>
+      <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 300 450" {...rest}>
         <g
           transform="translate(0,450) scale(0.1,-0.1)"
           stroke="currentColor"

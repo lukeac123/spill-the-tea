@@ -59,7 +59,7 @@ export default function Login() {
   return (
     <div className={styles.page}>
       <div className={styles.svg}>
-        <SpillTheTeaSVGText className={styles.svg} viewBox="0 0 300 450" />
+        <SpillTheTeaSVGText className={styles.svg} />
       </div>
       <Card className={styles.card}>
         <CardHeader>

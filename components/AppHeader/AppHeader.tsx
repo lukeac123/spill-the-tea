@@ -15,11 +15,7 @@ export const Appheader = ({
       <Link href="/">
         <SpillTheTeaSVG className={styles.appheaderSVG} viewBox="0 0 300 450" />
       </Link>
-
       <div className={styles.appheaderAction}>
-        <Button asChild variant="outline">
-          <Link href={"/events"}>Check out our upcoming events</Link>
-        </Button>
         {userId ? (
           <LogoutButton />
         ) : (

@@ -34,6 +34,13 @@ export const EventCard = ({
   event,
   loggedIn = false,
 }: EventCardType) => {
+  const handleSignUp = (eventId: number) => {
+    fetch("/api/event", {
+      method: "PUT",
+      body: eventId.toString(),
+    });
+  };
+
   return (
     <Card className={clsx(className, styles.eventCard)}>
       <CardHeader>
@@ -59,7 +66,11 @@ export const EventCard = ({
       </CardContent>
       <CardFooter>
         {loggedIn ? (
-          <Button className={styles.eventCardButton} variant="outline">
+          <Button
+            className={styles.eventCardButton}
+            variant="outline"
+            onClick={() => handleSignUp(event.id)}
+          >
             Sign Up
           </Button>
         ) : (

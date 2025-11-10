@@ -37,3 +37,16 @@ body {
 h1 {
   font-size: 50;
 }
+
+h2 {
+  font-size: 40;
+}
+
+span {
+  font-size: 20;
+}
+
+ul {
+  list-style: square inside
+}
+
