@@ -52,7 +52,7 @@ export default function Login() {
         message: "Email and password combination do not exist",
       });
     } else {
-      router.push("/events");
+      router.push("/");
     }
   };
 

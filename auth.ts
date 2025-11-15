@@ -12,13 +12,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {},
         password: {},
       },
+
       authorize: async (credentials) => {
-        const [user] = await db // always gets an array of results
+        const [user] = await db //TODO: why is this always an array
           .select()
           .from(usersSchema)
           .where(eq(usersSchema.email, credentials.email as string));
 
         if (!user) return null;
+        //TODO: Can this type check be more accurate, if user returns an empty array it will return true
+        // Can the structure of this code be better - lots of return statements ???
 
         const passwordCorrect = await compare(
           credentials.password as string,
@@ -26,10 +29,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
 
         if (!passwordCorrect) return null;
-
-        console.log(
-          "Auth*************************************************************"
-        );
 
         return {
           id: user.id.toString(),
