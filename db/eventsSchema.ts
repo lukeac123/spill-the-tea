@@ -10,6 +10,7 @@ import {
 export const eventsSchema = pgTable("event", {
   id: serial("id").primaryKey(), // Serial creates a new unique id for the events
   name: text("event_name").unique(),
+  description: text("event_description"),
   location: text("location").notNull(),
   date: timestamp("date", {
     mode: "date",

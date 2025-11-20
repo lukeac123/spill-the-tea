@@ -13,7 +13,7 @@ export const createEvent = async ({
   try {
     await db.insert(eventsSchema).values({
       name: name,
-      // description: description,
+      description: description,
       location: location,
       date: date,
       time: time,
