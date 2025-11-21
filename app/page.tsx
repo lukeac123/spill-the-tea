@@ -5,7 +5,6 @@ import {
   CardContent,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
 import Image from "next/image";
 import { SpillTheTeaSVGText } from "@/components/Icons/SpillTheTeaText";
@@ -16,10 +15,7 @@ export default function Page() {
   return (
     <div className={styles.page}>
       <SpillTheTeaSVGText className={styles.logo} />
-      <span>
-        Skill sharing platfrom for the queer community.
-        <br /> A platform by queers for queers
-      </span>
+      <span>Skill sharing platfrom for the queer community.</span>
       <div className={styles.content}>
         <Card noBorder>
           <h2>Upcoming events</h2>

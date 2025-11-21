@@ -50,3 +50,7 @@ ul {
   list-style: square inside
 }
 
+a:hover {
+ text-decoration: underline;
+}
+

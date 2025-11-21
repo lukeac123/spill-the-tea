@@ -17,6 +17,8 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
 
+  const isLoggedIn = session?.user ? true : false;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -29,7 +31,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Appheader userId={session?.user?.email} />
+          <Appheader isLoggedIn={isLoggedIn} />
           <main className={styles.layout}>{children}</main>
         </ThemeProvider>
       </body>
