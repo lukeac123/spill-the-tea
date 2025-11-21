@@ -14,6 +14,6 @@ export const usersSchema = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow(),
   twoFactorAuthSecret: text("2fa_secret"),
   twoFactorAuthActive: boolean().default(false),
-  eventsCreated: integer("events_created"),
-  eventsAttended: integer("events_attended"),
+  // eventsCreated: integer("events_created"),
+  // eventsAttended: integer("events_attended"),
 });
