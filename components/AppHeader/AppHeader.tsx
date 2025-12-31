@@ -13,7 +13,7 @@ const links: Record<string, { label: string; link: string }[]> = {
   ],
   "/events": [
     { label: "Home", link: "/" },
-    { label: "Create an Event", link: "/create" },
+    { label: "Create an Event", link: "/events/create" },
     { label: "Queer Businesses", link: "/businesses" },
     { label: "Our Mission", link: "/mission" },
   ],

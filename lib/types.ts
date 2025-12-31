@@ -4,5 +4,4 @@ export interface EventType {
   location: string;
   date: Date;
   time: string;
-  imageSrc: string;
 }

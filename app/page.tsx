@@ -8,8 +8,6 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { SpillTheTeaSVGText } from "@/components/Icons/SpillTheTeaText";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export default function Page() {
   return (

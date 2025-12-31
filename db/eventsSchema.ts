@@ -1,11 +1,4 @@
-import {
-  pgTable,
-  serial,
-  text,
-  integer,
-  time,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { pgTable, serial, text, time, timestamp } from "drizzle-orm/pg-core";
 
 export const eventsSchema = pgTable("event", {
   id: serial("id").primaryKey(), // Serial creates a new unique id for the events
@@ -16,7 +9,7 @@ export const eventsSchema = pgTable("event", {
     mode: "date",
   }).notNull(),
   time: time("time", { withTimezone: true }).notNull(),
-  createdBy: integer("created_by").notNull(), // User ID
+  createdBy: text("created_by").notNull(), // User ID
 });
 
 //TODO: add relation between eventSchema and created by

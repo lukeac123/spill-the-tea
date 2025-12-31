@@ -19,9 +19,6 @@
     flex-direction: column;
 }
 
-@media (s) {
-    
-}
 .card {
     width: 500px;
     display: flex;

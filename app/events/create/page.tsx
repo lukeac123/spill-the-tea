@@ -1,12 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import styles from "./page.module.css";
 import { z } from "zod";
@@ -20,8 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
-
+import { createEvent } from "./actions";
 import { useRouter } from "next/navigation";
 import { DatePicker } from "@/components/DatePicker/DatePicker";
 
@@ -31,7 +25,6 @@ const formSchema = z.object({
   location: z.string(),
   date: z.date(),
   time: z.string(),
-  image: z.string(),
 });
 
 export default function Login() {
@@ -43,24 +36,20 @@ export default function Login() {
       location: "",
       date: new Date(),
       time: "",
-      image: "",
     },
   });
 
   const router = useRouter();
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // const response = await LoginUser({
-    //   email: data.email,
-    //   password: data.password,
-    // });
-    // if (response?.error) {
-    //   form.setError("root", {
-    //     message: "Email and password combination do not exist",
-    //   });
-    // } else {
-    //   router.push("/");
-    // }
+    const eventCreated = await createEvent(data);
+    if (eventCreated?.error) {
+      form.setError("root", {
+        message: eventCreated.message ?? "Error, please try again",
+      });
+    } else {
+      router.push("/events");
+    }
   };
 
   return (
@@ -79,7 +68,7 @@ export default function Login() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Event Name</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -87,19 +76,6 @@ export default function Login() {
                           required
                           aria-required
                         />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="image"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Image Upload</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="file" required aria-required />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -179,6 +155,7 @@ export default function Login() {
                 )}
                 <Button type="submit" variant="outline">
                   Create Event
+                  {form.formState!.isSubmitting && <Spinner />}
                 </Button>
               </fieldset>
             </form>
