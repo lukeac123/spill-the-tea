@@ -31,15 +31,16 @@
     flex-shrink: 0;
 }
 
-.cardContent {
-    display: flex;
-    flex-direction: column;
-    gap: 20px
-
-}
 
 @media (width < 992px){
-.card{
-    width: 100%;
-}}
-
+    .card{
+        width: 100%;
+    }}
+    
+    .cardContent {
+        display: flex;
+        flex-direction: column;
+        gap: 20px
+    
+    }
+    

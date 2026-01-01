@@ -1,4 +1,3 @@
-"use client";
 import { passwordValidationSchema } from "@/validation/passwordSchema";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
