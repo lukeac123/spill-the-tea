@@ -45,6 +45,7 @@ export default function Page() {
   );
 }
 
+// Placeholder, get events from the db.
 const events = [
   {
     id: 1,
@@ -95,34 +96,3 @@ const events = [
     maxAttendees: 10,
   },
 ];
-
-{
-  /* <Card noBorder>
-<h2>Spill The Tea's Purpose</h2>
-<CardContent>
-  <span>
-    <ul>
-      <li>
-        Facilitate connectivity within the queer community by
-        providing an avenue for queers to socialise away from the more
-        traditional mechanisms: partying and sex.
-      </li>
-      <li>
-        Support the local queer community by sharing as well as
-        utilising the pink pound to support local queer businesses.
-      </li>
-      <li>A queer platform built for queers by queers.</li>
-      <li>
-        Please reach out on our socials if you have ideas for
-        improvements or would like to get involved.
-      </li>
-    </ul>
-  </span>
-</CardContent>
-<CardFooter>
-  <Button asChild variant="outline">
-    <Link href="/values">Learn More About Our Values</Link>
-  </Button>
-</CardFooter>
-</Card> */
-}

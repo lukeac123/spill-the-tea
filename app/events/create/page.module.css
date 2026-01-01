@@ -19,15 +19,11 @@
     flex-direction: column;
 }
 
-@media (s) {
-    
-}
 .card {
     width: 500px;
     display: flex;
     flex-direction: column;
 }
-
 
 .cardContent {
     display: flex;

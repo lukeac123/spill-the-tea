@@ -41,6 +41,7 @@ export default function Page() {
   );
 }
 
+// Placeholder - seed these events into the data base and get the events from there
 const events = [
   {
     id: 1,
@@ -48,7 +49,7 @@ const events = [
     caption:
       "Group meeting once a month to talking in spanish. We have a range of abolities, from native speakers to people just starting out. It's preferable if you have some spanish experince but you're more than welcome to come and practise your spanish listeing as well.",
     date: "10/11/25",
-    location: "Bethnal Green Tavern",
+    location: "Bethnal Green Tsavern",
     imgSrc: "/spanish-coffee.jpeg",
     imgDescription: "",
     link: "",
