@@ -1,31 +1,56 @@
 @import "tailwindcss";
 
+  /* --breakpoint-xs: 576px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 992px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1408px; */
+
+:root{
+  --appHeader-height: 60px;
+}
+
 :root[class="dark"] {
   --background: #171717;
   --foreground:#ffffff;
+  --dark-mode-hide: none
 }
 
 :root[class="light"] {
   --background: #ffffff;
   --foreground: #171717;
+  --light-mode-hide: none
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Agbalumo';
+  src: url('/agbalumo-v6-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}  */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Agbalumo"
 }
+
+h1 {
+  font-size: 50;
+}
+
+h2 {
+  font-size: 40;
+}
+
+span {
+  font-size: 20;
+}
+
+ul {
+  list-style: square inside
+}
+
+a:hover {
+ text-decoration: underline;
+}
+

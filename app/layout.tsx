@@ -1,42 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import styles from "./layout.module.css";
 import { Appheader } from "../components/AppHeader/AppHeader";
 import { ThemeProvider } from "../components/providers";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "Spill The Tea",
   description: "Queer Community Platform",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
+  const isLoggedIn = session?.user ? true : false;
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="icon" href="/spill-the-tea.svg" type="image/svg+xml" />
+      </head>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <Appheader />
+          <Appheader isLoggedIn={isLoggedIn} />
           <main className={styles.layout}>{children}</main>
         </ThemeProvider>
       </body>

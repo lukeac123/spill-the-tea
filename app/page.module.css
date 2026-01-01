@@ -1,0 +1,45 @@
+.page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.introduction {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    height: 500px;
+    width: 500px;
+}
+
+.eventsList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: inherit;
+    justify-content: center;
+}
+
+.card{
+    width: 400px;
+    flex-shrink: 0;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+
+}
+
+@media (width < 992px){
+.card{
+    width: 100%;
+}}
+

@@ -3,10 +3,11 @@
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import styles from "./themeToggle.module.css";
 
 import { Button } from "@/components/ui/button";
 
-export const ThemeToggle = ({ className }: { className: string }) => {
+export const ThemeToggle = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme();
 
   return (
@@ -16,8 +17,8 @@ export const ThemeToggle = ({ className }: { className: string }) => {
       className={className}
       onClick={() => (theme === "light" ? setTheme("dark") : setTheme("light"))}
     >
-      <Sun aria-hidden />
-      <Moon aria-hidden />
+      <Sun className={styles.sun} aria-hidden />
+      <Moon className={styles.moon} aria-hidden />
     </Button>
   );
 };
